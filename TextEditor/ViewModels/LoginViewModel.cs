@@ -100,23 +100,6 @@ namespace TextEditor.ViewModels
                 MessageBox.Show(String.Format(Resources.SignIn_UserDoesntExist, _login));
                 return;
             }
-            //TODO: fix exception with Encrypting
-            /*
-            try
-            {
-                if (!currentUser.CheckPassword(_password))
-                {
-                    MessageBox.Show(Resources.SignIn_WrongPassword);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.SignIn_FailedToValidatePassword, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-            */
             UserManager.Instance.CurrentUser = currentUser;
             SerializeManager.Instance.saveToXml(currentUser);
             NavigationManager.Instance.Navigate(ModesEnum.TextEditor);

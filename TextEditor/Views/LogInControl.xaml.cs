@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using TextEditor.managers;
-using TextEditor.utils;
+﻿using System.Windows.Controls;
 using TextEditor.ViewModels;
 
 namespace TextEditor
@@ -16,7 +13,7 @@ namespace TextEditor
             InitializeComponent();
             var loginViewModel = new LoginViewModel();
             DataContext = loginViewModel;
-            
+
         }
     }
 }

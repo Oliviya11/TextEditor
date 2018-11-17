@@ -1,8 +1,5 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using TextEditor.managers;
-using TextEditor.Models;
 using TextEditor.utils;
 
 /*
@@ -25,36 +22,6 @@ namespace TextEditor
             {
                 navigationModel.Navigate(ModesEnum.LogIn);
             }
-            /*
-            using (TextEditorDbContext db = new TextEditorDbContext())
-            {
-                // создаем два объекта User
-                User user1 = new User("User1", "123");
-                User user2 = new User("User2", "456");
-
-                // добавляем их в бд
-                db.Users.Add(user1);
-                db.Users.Add(user2);
-                db.SaveChanges();
-                Console.WriteLine("Объекты успешно сохранены");
-
-                // получаем объекты из бд и выводим на консоль
-                var users = db.Users;
-                Console.WriteLine("Список объектов:");
-                foreach (User u in users)
-                {
-                    MessageBox.Show(u.Login);
-                }
-            }
-            Console.Read();
-            */
-
-            /*
-            using (TextEditorDbContext db = new TextEditorDbContext())
-            {
-                db.Database.ExecuteSqlCommand("delete from dbo.Users");
-            }
-            */
         }
 
         public ContentControl ContentControl
