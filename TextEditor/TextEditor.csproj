@@ -71,6 +71,11 @@
     <Compile Include="managers\SerializeManager.cs" />
     <Compile Include="managers\TextEditorDbContext.cs" />
     <Compile Include="managers\UserManager.cs" />
+    <Compile Include="Migrations\201811171838510_TextEditorDB-v1.cs" />
+    <Compile Include="Migrations\201811171838510_TextEditorDB-v1.Designer.cs">
+      <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditingInfo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="utils\PasswordHelper.cs" />
@@ -123,6 +128,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201811171838510_TextEditorDB-v1.resx">
+      <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
