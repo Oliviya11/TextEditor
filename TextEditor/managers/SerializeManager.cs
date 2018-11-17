@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
+using TextEditor.Models;
 
 /*
  * Code for serializtion was taken from:
@@ -99,7 +100,13 @@ namespace TextEditor.managers
             return objectOut;
         }
 
-
+        public void saveToXml(User user)
+        {
+            if (user != null)
+            {
+                SerializeManager.Instance.SerializeObject<User>(user, SerializeManager.SaveUserFile);
+            }
+        }
 
         public static SerializeManager Instance
         {
