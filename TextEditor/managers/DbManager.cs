@@ -7,7 +7,7 @@ using System.Data.Entity;
 namespace TextEditor.managers
 {
     
-    public class DbManager
+    internal class DbManager
     {
         static DbManager _instance = null;
 
@@ -15,7 +15,7 @@ namespace TextEditor.managers
             
         }
 
-        public User GetUser(string login)
+        internal User GetUser(string login)
         {
             User user = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
@@ -25,7 +25,7 @@ namespace TextEditor.managers
             return user;
         }
 
-        public User CreateUser(string login, string password)
+        internal User CreateUser(string login, string password)
         {
             User user = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
@@ -39,12 +39,12 @@ namespace TextEditor.managers
             return user;
         }
 
-        public bool DoesUserExist(string login)
+        internal bool DoesUserExist(string login)
         {
             return GetUser(login) != null;
         }
 
-        public EditingInfo CreateEditingInfo(User user, string filePath, bool isFileChanged, DateTime editingDate) {
+        internal EditingInfo CreateEditingInfo(User user, string filePath, bool isFileChanged, DateTime editingDate) {
             EditingInfo info = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
             {
@@ -59,7 +59,7 @@ namespace TextEditor.managers
             return info;
         }
 
-        public List<EditingInfo> GetEditingInfoes(string filePath)
+        internal List<EditingInfo> GetEditingInfoes(string filePath)
         {
             List<EditingInfo> result = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
@@ -69,7 +69,7 @@ namespace TextEditor.managers
             return result;
         }
 
-        public static DbManager Instance
+        internal static DbManager Instance
         {
             get
             {

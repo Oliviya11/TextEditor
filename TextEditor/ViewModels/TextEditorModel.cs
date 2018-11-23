@@ -92,12 +92,11 @@ namespace TextEditor.ViewModels
         {
             try
             {
-                SerializeManager.Instance.SerializeObject(user, SerializeManager.SaveUserFile);
-                MessageBox.Show(SerializeManager.SaveUserFile);
+                SerializeManager.Instance.SerializeObject(user, FilePathHolder.SaveUserFile);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to save user to file!");
+                Logger.Log("Failed to serialize user to file!", ex);
             }
         }
 

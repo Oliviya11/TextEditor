@@ -4,6 +4,7 @@ using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
 using TextEditor.Models;
+using TextEditor.utils;
 
 /*
  * Code for serializtion was taken from:
@@ -13,10 +14,7 @@ using TextEditor.Models;
 namespace TextEditor.managers
 {
     public class SerializeManager
-    {
-        public static string AppLocation = AppDomain.CurrentDomain.BaseDirectory;
-        public static string SaveUserFile = AppLocation + "user.xml";
-
+    { 
         static SerializeManager _instance = null;
 
         private SerializeManager()
@@ -49,7 +47,7 @@ namespace TextEditor.managers
             catch (Exception ex)
             {
                 //Log exception here
-                MessageBox.Show(ex.ToString());
+                Logger.Log("Failed to Serialize object", ex);
             }
         }
 
@@ -90,7 +88,7 @@ namespace TextEditor.managers
             catch (Exception ex)
             {
                 //Log exception here
-                MessageBox.Show(ex.ToString());
+                Logger.Log("Failed to DeSerialize object", ex);
             }
 
             return objectOut;
@@ -100,7 +98,14 @@ namespace TextEditor.managers
         {
             if (user != null)
             {
-                SerializeManager.Instance.SerializeObject<User>(user, SerializeManager.SaveUserFile);
+                try
+                {
+                    SerializeManager.Instance.SerializeObject<User>(user, FilePathHolder.SaveUserFile);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log("Failed to serialize user to file!", ex);
+                }
             }
         }
 

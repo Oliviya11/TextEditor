@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -67,6 +70,7 @@
     <Compile Include="managers\DbManager.cs" />
     <Compile Include="managers\FileManager.cs" />
     <Compile Include="managers\AutoLoginManager.cs" />
+    <Compile Include="managers\LoaderManager.cs" />
     <Compile Include="managers\NavigationManager.cs" />
     <Compile Include="managers\SerializeManager.cs" />
     <Compile Include="managers\TextEditorDbContext.cs" />
@@ -78,9 +82,13 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditingInfo.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="utils\FilePathHolder.cs" />
+    <Compile Include="utils\ILoaderOwner .cs" />
+    <Compile Include="utils\Logger.cs" />
     <Compile Include="utils\PasswordHelper.cs" />
     <Compile Include="utils\RelayCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TextEditorModel.cs" />
     <Compile Include="Views\TextEditorControl.xaml.cs">
       <DependentUpon>TextEditorControl.xaml</DependentUpon>

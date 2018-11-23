@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TextEditor.managers;
@@ -53,15 +54,15 @@ namespace TextEditor.ViewModels
                 return _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
             }
         }
-        
+
         public ICommand SignInCommand
         {
             get
             {
-               return _signInCommand ?? (_signInCommand = new RelayCommand<object>(SignInExecute, SignInCanExecute));
+                return _signInCommand ?? (_signInCommand = new RelayCommand<object>(SignInExecute, SignInCanExecute));
             }
         }
-        
+
         public ICommand SignUpCommand
         {
             get
@@ -80,29 +81,40 @@ namespace TextEditor.ViewModels
         }
         #endregion
 
-        private void SignInExecute(object obj)
+        private async void SignInExecute(object obj)
         {
-            if (_isAutoLogin) return;
-
+            LoaderManager.Instance.ShowLoader();
             User currentUser;
-            try
+            bool result = await Task.Run(() => {
+                if (_isAutoLogin)
+                {
+                    return true;
+                }
+                try
+                {
+                    currentUser = DbManager.Instance.GetUser(_login);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.SignIn_FailedToGetUser, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                if (currentUser == null)
+                {
+                    MessageBox.Show(String.Format(Resources.SignIn_UserDoesntExist, _login));
+                    return false;
+                }
+                UserManager.Instance.CurrentUser = currentUser;
+                SerializeManager.Instance.saveToXml(currentUser);
+                return true;
+
+            });
+            LoaderManager.Instance.HideLoader();
+            if (result)
             {
-                currentUser = DbManager.Instance.GetUser(_login);
+                NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.SignIn_FailedToGetUser, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-            if (currentUser == null)
-            {
-                MessageBox.Show(String.Format(Resources.SignIn_UserDoesntExist, _login));
-                return;
-            }
-            UserManager.Instance.CurrentUser = currentUser;
-            SerializeManager.Instance.saveToXml(currentUser);
-            NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
         }
 
         private bool SignInCanExecute(object obj)
@@ -110,38 +122,49 @@ namespace TextEditor.ViewModels
             return !String.IsNullOrWhiteSpace(_login) && !String.IsNullOrWhiteSpace(_password);
         }
 
-        private void SignUpExecute(object obj)
+        private async void SignUpExecute(object obj)
         {
-            if (_isAutoLogin) return;
-
-            try
+            LoaderManager.Instance.ShowLoader();
+            bool result = await Task.Run(() =>
             {
-                if (DbManager.Instance.DoesUserExist(_login))
+                if (_isAutoLogin)
                 {
-                    MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
-                    return;
+                    return true;
                 }
+                try
+                {
+                    if (DbManager.Instance.DoesUserExist(_login))
+                    {
+                        MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                try
+                {
+                    UserManager.Instance.CurrentUser = DbManager.Instance.CreateUser(_login, _password);
+                    SerializeManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.SignUp_FailedToCreateUser, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
+                return true;
             }
-            catch (Exception ex)
+            );
+            LoaderManager.Instance.HideLoader();
+            if (result)
             {
-                MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
-                    ex.Message));
-                return;
+                NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
             }
-            try
-            {
-                UserManager.Instance.CurrentUser = DbManager.Instance.CreateUser(_login, _password);
-                SerializeManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.SignUp_FailedToCreateUser, Environment.NewLine,
-                    ex.Message));
-                return;
-            }
-
-            MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
-            NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
         }
 
         private void CloseExecute(object obj)

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using TextEditor.managers;
 using TextEditor.utils;
+using TextEditor.ViewModels;
 
 /*
  * Class MainWindow was made similar to MainWindow from:
@@ -16,12 +17,9 @@ namespace TextEditor
         public MainWindow()
         {
             InitializeComponent();
-            var navigationModel = new NavigationModel(this);
-            NavigationManager.Instance.Initialize(navigationModel);
-            if (!AutoLoginManager.Instance.readFromXml())
-            {
-                navigationModel.Navigate(ModesEnum.LogIn);
-            }
+            MainViewModel mainViewModel = new MainViewModel();
+            DataContext = mainViewModel;
+            mainViewModel.StartApplication(this);
         }
 
         public ContentControl ContentControl

@@ -16,7 +16,7 @@ namespace TextEditor.managers
 
         public bool readFromXml()
         {
-            User user = SerializeManager.Instance.DeSerializeObject<User>(SerializeManager.SaveUserFile);
+            User user = SerializeManager.Instance.DeSerializeObject<User>(FilePathHolder.SaveUserFile);
             if (user != null && user.Login != null)
             {
                 
