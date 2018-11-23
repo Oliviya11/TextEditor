@@ -89,7 +89,7 @@
     <Compile Include="utils\RelayCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\TextEditorModel.cs" />
+    <Compile Include="ViewModels\TextEditorViewModel.cs" />
     <Compile Include="Views\TextEditorControl.xaml.cs">
       <DependentUpon>TextEditorControl.xaml</DependentUpon>
     </Compile>

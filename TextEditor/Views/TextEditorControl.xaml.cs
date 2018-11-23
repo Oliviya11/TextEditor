@@ -11,7 +11,7 @@ namespace TextEditor
         public TextEditorControl()
         {
             InitializeComponent();
-            var textEditorViewModel = new TextEditorModel();
+            var textEditorViewModel = new TextEditorViewModel();
             DataContext = textEditorViewModel;
         }
     }

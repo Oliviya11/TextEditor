@@ -11,7 +11,7 @@ using TextEditor.utils;
 
 namespace TextEditor.ViewModels
 {
-    class TextEditorModel : INotifyPropertyChanged
+    class TextEditorViewModel : INotifyPropertyChanged
     {
         #region
         private string _fileContent;
@@ -20,6 +20,7 @@ namespace TextEditor.ViewModels
         #region Commands
         private ICommand _openFileCommand;
         private ICommand _saveFileCommand;
+        private ICommand _logoutCommand;
         private ICommand _closeCommand;
         #endregion
         #endregion
@@ -74,6 +75,14 @@ namespace TextEditor.ViewModels
             get
             {
                 return _saveFileCommand ?? (_saveFileCommand = new RelayCommand<object>(SaveFileExecute));
+            }
+        }
+
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                return _logoutCommand ?? (_logoutCommand = new RelayCommand<object>(LogOutExecute));
             }
         }
         
@@ -155,6 +164,11 @@ namespace TextEditor.ViewModels
                 MessageBox.Show(String.Format(Resources.OpenFile_FailedToSave, Environment.NewLine,
                     ex.Message));
            }
+        }
+
+        private void LogOutExecute(object obj)
+        {
+
         }
 
         #region EventsAndHandlers
