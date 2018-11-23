@@ -168,6 +168,8 @@ namespace TextEditor.ViewModels
 
         private void LogOutExecute(object obj)
         {
+            StorageManager.Instance.ClearUserStorage();
+            NavigationManager.Instance.Navigate(ModesEnum.LogIn);
 
         }
 

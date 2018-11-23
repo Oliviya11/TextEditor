@@ -24,7 +24,7 @@
             <MenuItem Header="File" Height="41" Width="60" FontSize="24">
                 <MenuItem Header="Open" Command="{Binding OpenFileCommand}"></MenuItem>
                 <MenuItem Header="Save" Command="{Binding SaveFileCommand}"></MenuItem>
-                <MenuItem Header="Log Out" Command="{Binding LogOutCommand}"></MenuItem>
+                <MenuItem Header="Log Out" Command="{Binding LogoutCommand}"></MenuItem>
                 <MenuItem Header="Exit" Command="{Binding CloseCommand}"></MenuItem>
             </MenuItem>
         </Menu>

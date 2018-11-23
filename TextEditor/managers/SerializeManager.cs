@@ -94,21 +94,6 @@ namespace TextEditor.managers
             return objectOut;
         }
 
-        public void saveToXml(User user)
-        {
-            if (user != null)
-            {
-                try
-                {
-                    SerializeManager.Instance.SerializeObject<User>(user, FilePathHolder.SaveUserFile);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log("Failed to serialize user to file!", ex);
-                }
-            }
-        }
-
         public static SerializeManager Instance
         {
             get

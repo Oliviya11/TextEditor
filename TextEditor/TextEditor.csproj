@@ -73,6 +73,7 @@
     <Compile Include="managers\LoaderManager.cs" />
     <Compile Include="managers\NavigationManager.cs" />
     <Compile Include="managers\SerializeManager.cs" />
+    <Compile Include="managers\StorageManager.cs" />
     <Compile Include="managers\TextEditorDbContext.cs" />
     <Compile Include="managers\UserManager.cs" />
     <Compile Include="Migrations\201811171838510_TextEditorDB-v1.cs" />

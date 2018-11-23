@@ -8,6 +8,11 @@ namespace TextEditor.utils
         internal static string AppLocation = AppDomain.CurrentDomain.BaseDirectory;
         internal static string SaveUserFile = AppLocation + "user.xml";
         internal static readonly string LogFilepath = AppLocation + "log.txt";
+        internal static bool CheckFileExists(string filePath)
+        {
+            FileInfo file = new FileInfo(filePath);
+            return file.Exists;
+        }
         internal static void CheckAndCreateFile(string filePath)
         {
             try

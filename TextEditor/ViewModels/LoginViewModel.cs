@@ -106,7 +106,7 @@ namespace TextEditor.ViewModels
                     return false;
                 }
                 UserManager.Instance.CurrentUser = currentUser;
-                SerializeManager.Instance.saveToXml(currentUser);
+                StorageManager.Instance.saveToXml(currentUser);
                 return true;
 
             });
@@ -148,7 +148,7 @@ namespace TextEditor.ViewModels
                 try
                 {
                     UserManager.Instance.CurrentUser = DbManager.Instance.CreateUser(_login, _password);
-                    SerializeManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
+                    StorageManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
                 }
                 catch (Exception ex)
                 {
