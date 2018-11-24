@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
-using TextEditor.Models;
 using TextEditor.utils;
 
 /*

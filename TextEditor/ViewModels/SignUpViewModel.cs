@@ -1,11 +1,11 @@
-﻿using System;
+﻿using DBModels;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TextEditor.managers;
-using TextEditor.Models;
 using TextEditor.Properties;
 using TextEditor.utils;
 

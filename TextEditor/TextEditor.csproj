@@ -85,8 +85,6 @@
       <DependentUpon>201811241220505_TextEditorDB-v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\EditingInfo.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="utils\FilePathHolder.cs" />
     <Compile Include="utils\ILoaderOwner .cs" />
     <Compile Include="utils\Logger.cs" />
@@ -167,6 +165,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

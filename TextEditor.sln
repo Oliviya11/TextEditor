@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextEditor", "TextEditor\TextEditor.csproj", "{08F11013-98B5-43E5-92C9-C73C6D60FCFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBModels", "DBModels\DBModels.csproj", "{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{08F11013-98B5-43E5-92C9-C73C6D60FCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08F11013-98B5-43E5-92C9-C73C6D60FCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08F11013-98B5-43E5-92C9-C73C6D60FCFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

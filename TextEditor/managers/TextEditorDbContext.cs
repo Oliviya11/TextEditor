@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using TextEditor.Models;
+﻿using DBModels;
+using System.Data.Entity;
 
 namespace TextEditor.managers
 {

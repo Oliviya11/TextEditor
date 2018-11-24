@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DBModels;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TextEditor.Models;
 using TextEditor.utils;
 
 namespace TextEditor.managers

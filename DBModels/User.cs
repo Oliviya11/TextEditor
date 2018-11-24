@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
-using TextEditor.utils;
 
-namespace TextEditor.Models
+namespace DBModels
 {
     [Serializable]
     public class User
@@ -111,14 +109,14 @@ namespace TextEditor.Models
 
         private void SetPassword(string password)
         {
-            _password = Encrypting.EncryptText(password, PubblicKey);
+            _password = "";//Encrypting.EncryptText(password, PubblicKey);
         }
         public bool CheckPassword(string password)
         {
             try
             {
-                string res = Encrypting.DecryptString(_password, PrivateKey);
-                string res2 = Encrypting.GetMd5HashForString(password);
+                string res = "";//Encrypting.DecryptString(_password, PrivateKey);
+                string res2 = "";//Encrypting.GetMd5HashForString(password);
                 return res == res2;
             }
             catch (Exception)

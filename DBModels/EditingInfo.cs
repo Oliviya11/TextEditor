@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TextEditor.Models
+namespace DBModels
 {
     public class EditingInfo
     {

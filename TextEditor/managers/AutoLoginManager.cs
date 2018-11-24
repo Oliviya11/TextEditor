@@ -1,4 +1,4 @@
-﻿using TextEditor.Models;
+﻿using DBModels;
 using TextEditor.utils;
 
 namespace TextEditor.managers

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TextEditor.Models;
 using System.Data.Entity;
+using DBModels;
 
 namespace TextEditor.managers
 {
