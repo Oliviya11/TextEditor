@@ -25,18 +25,14 @@ namespace TextEditor.managers
             return user;
         }
 
-        internal User CreateUser(string login, string password)
+        internal void CreateUser(User user)
         {
-            User user = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
             {
-                user = new User(login, password);
                 user.EditingInfos = new List<EditingInfo>();
                 db.Users.Add(user);
                 db.SaveChanges();
             }
-
-            return user;
         }
 
         internal bool DoesUserExist(string login)

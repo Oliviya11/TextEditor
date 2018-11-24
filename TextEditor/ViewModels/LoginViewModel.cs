@@ -67,7 +67,7 @@ namespace TextEditor.ViewModels
         {
             get
             {
-                return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute, SignInCanExecute));
+                return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute));
             }
         }
 
@@ -122,49 +122,9 @@ namespace TextEditor.ViewModels
             return !String.IsNullOrWhiteSpace(_login) && !String.IsNullOrWhiteSpace(_password);
         }
 
-        private async void SignUpExecute(object obj)
+        private void SignUpExecute(object obj)
         {
-            LoaderManager.Instance.ShowLoader();
-            bool result = await Task.Run(() =>
-            {
-                if (_isAutoLogin)
-                {
-                    return true;
-                }
-                try
-                {
-                    if (DbManager.Instance.DoesUserExist(_login))
-                    {
-                        MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
-                        return false;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(String.Format(Resources.SignUp_FailedToValidateData, Environment.NewLine,
-                        ex.Message));
-                    return false;
-                }
-                try
-                {
-                    UserManager.Instance.CurrentUser = DbManager.Instance.CreateUser(_login, _password);
-                    StorageManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(String.Format(Resources.SignUp_FailedToCreateUser, Environment.NewLine,
-                        ex.Message));
-                    return false;
-                }
-                MessageBox.Show(String.Format(Resources.SignUp_UserSuccessfulyCreated, _login));
-                return true;
-            }
-            );
-            LoaderManager.Instance.HideLoader();
-            if (result)
-            {
-                NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
-            }
+            NavigationManager.Instance.Navigate(ModesEnum.SignUp);
         }
 
         private void CloseExecute(object obj)

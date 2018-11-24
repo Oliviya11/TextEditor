@@ -19,7 +19,11 @@ namespace TextEditor.Models
         [NonSerialized]
         private Guid _guid;
         private string _login;
+        private string _name;
+        private string _surname;
         private string _password;
+        private string _email;
+
         #endregion
 
         #region Properties
@@ -35,6 +39,7 @@ namespace TextEditor.Models
                 _guid = value;
             }
         }
+
         public string Login
         {
             get
@@ -46,6 +51,25 @@ namespace TextEditor.Models
                 _login = value;
             }
         }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            private set { }
+        }
+
+        public string Surname
+        {
+            get
+            {
+                return _surname;
+            }
+            private set { }
+        }
+
         private string Password
         {
             get
@@ -57,14 +81,25 @@ namespace TextEditor.Models
                 _password = value;
             }
         }
+
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            private set { }
+        }
         #endregion
 
         #region Constructor
-        public User(string login, string password)
+        public User(string login, string name, string surname, string password, string email)
         {
             _guid = Guid.NewGuid();
             _login = login;
-
+            _name = name;
+            _surname = surname;
+            _email = email;
             SetPassword(password);
         }
 

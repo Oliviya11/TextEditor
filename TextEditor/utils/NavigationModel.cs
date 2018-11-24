@@ -1,10 +1,12 @@
 ﻿using System;
+using TextEditor.Views;
 
 namespace TextEditor.utils
 {
     internal enum ModesEnum
     {
         LogIn,
+        SignUp,
         TextEditor
     }
 
@@ -13,6 +15,7 @@ namespace TextEditor.utils
         private LogInControl _loginControl;
         private IContentWindow _contentWindow;
         private TextEditorControl _textEditorControl;
+        private SignUpControl _signUpControl;
 
         internal NavigationModel(IContentWindow contentWindow)
         {
@@ -28,6 +31,9 @@ namespace TextEditor.utils
                     break;
                 case ModesEnum.TextEditor:
                     _contentWindow.ContentControl.Content = _textEditorControl ?? (_textEditorControl = new TextEditorControl());
+                    break;
+                case ModesEnum.SignUp:
+                    _contentWindow.ContentControl.Content = _signUpControl ?? (_signUpControl = new SignUpControl());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
