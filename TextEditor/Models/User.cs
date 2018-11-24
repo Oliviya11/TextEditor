@@ -52,6 +52,7 @@ namespace TextEditor.Models
             }
         }
 
+        [System.Xml.Serialization.XmlIgnore]
         public string Name
         {
             get
@@ -61,6 +62,7 @@ namespace TextEditor.Models
             private set { }
         }
 
+        [System.Xml.Serialization.XmlIgnore]
         public string Surname
         {
             get
@@ -82,6 +84,7 @@ namespace TextEditor.Models
             }
         }
 
+        [System.Xml.Serialization.XmlIgnore]
         public string Email
         {
             get

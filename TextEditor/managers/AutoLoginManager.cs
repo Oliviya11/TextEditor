@@ -11,10 +11,10 @@ namespace TextEditor.managers
 
         public bool isAutoLogin()
         {
-            return readFromXml();
+            return readFromXMLAndRedirect();
         }
 
-        public bool readFromXml()
+        public bool readFromXMLAndRedirect()
         {
             User user = SerializeManager.Instance.DeSerializeObject<User>(FilePathHolder.SaveUserFile);
             if (user != null && user.Login != null)
