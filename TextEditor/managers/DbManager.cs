@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using DBModels;
+using DBAdapter;
 
 namespace TextEditor.managers
 {
@@ -18,7 +19,7 @@ namespace TextEditor.managers
         internal User GetUser(string login)
         {
             User user = null;
-            using (TextEditorDbContext db = new TextEditorDbContext())
+            using (TextEditorDbContext db = new DBAdapter.TextEditorDbContext())
             {
                 user = db.Users.FirstOrDefault(u => u.Login == login);
             }
@@ -27,7 +28,7 @@ namespace TextEditor.managers
 
         internal void CreateUser(User user)
         {
-            using (TextEditorDbContext db = new TextEditorDbContext())
+            using (TextEditorDbContext db = new DBAdapter.TextEditorDbContext())
             {
                 user.EditingInfos = new List<EditingInfo>();
                 db.Users.Add(user);

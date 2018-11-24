@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextEditor", "TextEditor\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBModels", "DBModels\DBModels.csproj", "{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBAdapter", "DBAdapter\DBAdapter.csproj", "{56D61E70-2B7B-4BA8-A233-EA7DD139282F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56D61E70-2B7B-4BA8-A233-EA7DD139282F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D61E70-2B7B-4BA8-A233-EA7DD139282F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D61E70-2B7B-4BA8-A233-EA7DD139282F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D61E70-2B7B-4BA8-A233-EA7DD139282F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

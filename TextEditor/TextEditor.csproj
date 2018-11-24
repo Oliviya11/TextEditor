@@ -74,17 +74,7 @@
     <Compile Include="managers\NavigationManager.cs" />
     <Compile Include="managers\SerializeManager.cs" />
     <Compile Include="managers\StorageManager.cs" />
-    <Compile Include="managers\TextEditorDbContext.cs" />
     <Compile Include="managers\UserManager.cs" />
-    <Compile Include="Migrations\201811171838510_TextEditorDB-v1.cs" />
-    <Compile Include="Migrations\201811171838510_TextEditorDB-v1.Designer.cs">
-      <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811241220505_TextEditorDB-v2.cs" />
-    <Compile Include="Migrations\201811241220505_TextEditorDB-v2.Designer.cs">
-      <DependentUpon>201811241220505_TextEditorDB-v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="utils\FilePathHolder.cs" />
     <Compile Include="utils\ILoaderOwner .cs" />
     <Compile Include="utils\Logger.cs" />
@@ -147,12 +137,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201811171838510_TextEditorDB-v1.resx">
-      <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811241220505_TextEditorDB-v2.resx">
-      <DependentUpon>201811241220505_TextEditorDB-v2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -167,6 +151,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBAdapter\DBAdapter.csproj">
+      <Project>{56D61E70-2B7B-4BA8-A233-EA7DD139282F}</Project>
+      <Name>DBAdapter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBModels\DBModels.csproj">
       <Project>{7B6EA05A-8D03-446A-AFD7-F16A09A67EA6}</Project>
       <Name>DBModels</Name>

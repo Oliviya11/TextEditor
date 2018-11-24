@@ -1,4 +1,4 @@
-namespace TextEditor.Migrations
+namespace DBAdapter.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -26,6 +26,9 @@ namespace TextEditor.Migrations
                     {
                         Id = c.Guid(nullable: false),
                         Login = c.String(),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        Email = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -1,19 +1,16 @@
 ﻿using DBModels;
 using System.Data.Entity;
 
-namespace TextEditor.managers
+namespace DBAdapter
 {
     public class TextEditorDbContext : DbContext
     {
         public TextEditorDbContext() : base("DbConnection")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TextEditorDbContext, TextEditor.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TextEditorDbContext, DBAdapter.Migrations.Configuration>());
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<EditingInfo> EditingInfos { get; set; }
-
-
     }
-
 }
