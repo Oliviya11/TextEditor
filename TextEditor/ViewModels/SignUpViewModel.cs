@@ -71,12 +71,31 @@ namespace TextEditor.ViewModels
 
         private ICommand _signUpCommand;
 
-
         public ICommand SignUpCommand
         {
             get
             {
                 return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute, SignUpCanExecute));
+            }
+        }
+
+        private ICommand _closeCommand;
+
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
+            }
+        }
+
+        private ICommand _backCommand;
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                return _backCommand ?? (_backCommand = new RelayCommand<object>(BackExecute));
             }
         }
 
@@ -127,6 +146,17 @@ namespace TextEditor.ViewModels
             return !String.IsNullOrWhiteSpace(_login) && !String.IsNullOrWhiteSpace(_password) 
                 && !String.IsNullOrWhiteSpace(_email) && !String.IsNullOrWhiteSpace(_name)
                 && !String.IsNullOrWhiteSpace(_surname);
+        }
+
+        private void CloseExecute(object obj)
+        {
+            MessageBox.Show("ShutDown");
+            Environment.Exit(1);
+        }
+
+        private void BackExecute(object obj)
+        {
+            NavigationManager.Instance.Navigate(ModesEnum.LogIn);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
