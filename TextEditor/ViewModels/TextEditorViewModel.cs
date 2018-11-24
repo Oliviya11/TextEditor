@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TextEditor.managers;
@@ -85,7 +86,7 @@ namespace TextEditor.ViewModels
                 return _logoutCommand ?? (_logoutCommand = new RelayCommand<object>(LogOutExecute));
             }
         }
-        
+
         #endregion
         #endregion
 
@@ -111,16 +112,15 @@ namespace TextEditor.ViewModels
 
         private void OpenFileExecute(object obj)
         {
+            LoaderManager.Instance.ShowLoader();
             try
             {
-                string result = FileManager.Instance.OpenFile();
-                if (result == null)
+                FileManager.Instance.OpenFile();
+                VoidDelegate deg = delegate ()
                 {
-                    MessageBox.Show(Resources.OpenFile_FailedToRead);
-                    return;
-                }
-
-                FileContent = result;
+                    initFileContent(FileManager.Instance.FileContent);
+                };
+                FileManager.Instance.signalOnRead.AddListener(deg);
             }
             catch (Exception ex)
             {
@@ -146,24 +146,40 @@ namespace TextEditor.ViewModels
                 MessageBox.Show(String.Format(Resources.EditingInfo_FailedToRead, Environment.NewLine,
                     ex.Message));
             }
+            LoaderManager.Instance.HideLoader();
         }
 
-        private void SaveFileExecute(object obj)
+        private void initFileContent(string content)
         {
-           try
-           {
-                bool isSaved = FileManager.Instance.SaveFile(FileContent);
-                DateTime now = DateTime.Now;
-                EditingInfo info = DbManager.Instance.CreateEditingInfo(UserManager.Instance.CurrentUser, FileManager.Instance.CurrentFileName, isSaved, now);
-                string result = info.User.Login + " " + info.EditingDate.ToString() + System.Environment.NewLine;
-                EditingInfo += result;
-                MessageBox.Show(Resources.SaveFile_Success);
-           }
-           catch (Exception ex)
-           {
-                MessageBox.Show(String.Format(Resources.OpenFile_FailedToSave, Environment.NewLine,
-                    ex.Message));
-           }
+            if (content != null)
+            {
+                FileContent = content;
+            }
+        }
+
+        private async void SaveFileExecute(object obj)
+        {
+            LoaderManager.Instance.ShowLoader();
+            bool res = await Task.Run(() =>
+            {
+                try
+                {
+                    bool isSaved = FileManager.Instance.SaveFile(FileContent);
+                    DateTime now = DateTime.Now;
+                    EditingInfo info = DbManager.Instance.CreateEditingInfo(UserManager.Instance.CurrentUser, FileManager.Instance.CurrentFileName, isSaved, now);
+                    string result = info.User.Login + " " + info.EditingDate.ToString() + System.Environment.NewLine;
+                    EditingInfo += result;
+                    MessageBox.Show(Resources.SaveFile_Success);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(String.Format(Resources.OpenFile_FailedToSave, Environment.NewLine,
+                        ex.Message));
+                    return false;
+                }
+                return true;
+            });
+            LoaderManager.Instance.HideLoader();
         }
 
         private void LogOutExecute(object obj)

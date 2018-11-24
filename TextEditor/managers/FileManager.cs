@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using TextEditor.utils;
 
 namespace TextEditor.managers
 {
@@ -8,22 +10,34 @@ namespace TextEditor.managers
         static FileManager _instance;
         string _currentFileName = null;
         string _fileContent = null;
+        public Signal signalOnRead = new Signal();
 
         private FileManager() { }
 
-        public string OpenFile()
+        public void OpenFile()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text|*.txt|All|*.*";
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                CurrentFileName = openFileDialog.FileName;
-                StreamReader sr = new StreamReader(CurrentFileName);
-                _fileContent = sr.ReadToEnd();
-                sr.Close();
+                var reult = Task.Run(() =>
+                {
+                    CurrentFileName = openFileDialog.FileName;
+                    StreamReader sr = new StreamReader(CurrentFileName);
+                    _fileContent = sr.ReadToEnd();
+                    sr.Close();
+                    signalOnRead.Invoke();
+                });
             }
+        }
 
-            return _fileContent;
+        public string FileContent
+        {
+            get
+            {
+                return _fileContent;
+            }
+            private set { }
         }
 
         public bool SaveFile(string newFileContent)
