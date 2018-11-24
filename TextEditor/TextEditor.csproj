@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201811171838510_TextEditorDB-v1.Designer.cs">
       <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811241220505_TextEditorDB-v2.cs" />
+    <Compile Include="Migrations\201811241220505_TextEditorDB-v2.Designer.cs">
+      <DependentUpon>201811241220505_TextEditorDB-v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditingInfo.cs" />
     <Compile Include="Models\User.cs" />
@@ -147,6 +151,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201811171838510_TextEditorDB-v1.resx">
       <DependentUpon>201811171838510_TextEditorDB-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811241220505_TextEditorDB-v2.resx">
+      <DependentUpon>201811241220505_TextEditorDB-v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
