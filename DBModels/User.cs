@@ -48,7 +48,7 @@ namespace DBModels
             {
                 return _login;
             }
-            private set
+            set
             {
                 _login = value;
             }
@@ -82,6 +82,7 @@ namespace DBModels
             }
         }
 
+        [System.Xml.Serialization.XmlIgnore]
         [DataMember]
         public string Password
         {
