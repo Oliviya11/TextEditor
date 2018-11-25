@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DBModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DBModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element name="_email" nillable="true" type="xs:string" />
+      <xs:element name="_login" nillable="true" type="xs:string" />
+      <xs:element name="_name" nillable="true" type="xs:string" />
+      <xs:element name="_password" nillable="true" type="xs:string" />
+      <xs:element name="_surname" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EditingInfos_x003E_k__BackingField" nillable="true" type="tns:ArrayOfEditingInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfEditingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EditingInfo" nillable="true" type="tns:EditingInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEditingInfo" nillable="true" type="tns:ArrayOfEditingInfo" />
+  <xs:complexType name="EditingInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EditingInfo" nillable="true" type="tns:EditingInfo" />
+</xs:schema>

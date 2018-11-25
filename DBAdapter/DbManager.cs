@@ -7,8 +7,7 @@ using DBAdapter;
 
 namespace TextEditor.managers
 {
-    
-    internal class DbManager
+    public class DbManager
     {
         static DbManager _instance = null;
 
@@ -16,7 +15,7 @@ namespace TextEditor.managers
             
         }
 
-        internal User GetUser(string login)
+        public User GetUser(string login)
         {
             User user = null;
             using (TextEditorDbContext db = new DBAdapter.TextEditorDbContext())
@@ -26,7 +25,7 @@ namespace TextEditor.managers
             return user;
         }
 
-        internal void CreateUser(User user)
+        public void CreateUser(User user)
         {
             using (TextEditorDbContext db = new DBAdapter.TextEditorDbContext())
             {
@@ -36,12 +35,12 @@ namespace TextEditor.managers
             }
         }
 
-        internal bool DoesUserExist(string login)
+        public bool DoesUserExist(string login)
         {
             return GetUser(login) != null;
         }
 
-        internal EditingInfo CreateEditingInfo(User user, string filePath, bool isFileChanged, DateTime editingDate) {
+        public EditingInfo CreateEditingInfo(User user, string filePath, bool isFileChanged, DateTime editingDate) {
             EditingInfo info = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
             {
@@ -56,7 +55,7 @@ namespace TextEditor.managers
             return info;
         }
 
-        internal List<EditingInfo> GetEditingInfoes(string filePath)
+        public List<EditingInfo> GetEditingInfoes(string filePath)
         {
             List<EditingInfo> result = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
@@ -66,7 +65,7 @@ namespace TextEditor.managers
             return result;
         }
 
-        internal static DbManager Instance
+        public static DbManager Instance
         {
             get
             {

@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class EditingInfo
     {
         #region Fields
+        [DataMember]
         private Guid _guid;
+        [DataMember]
         private string _filePath;
+        [DataMember]
         private bool _isFileChanged;
+        [DataMember]
         private DateTime _editingDate;
         #endregion
 

@@ -7,7 +7,7 @@ namespace DBAdapter
     {
         public TextEditorDbContext() : base("DbConnection")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TextEditorDbContext, DBAdapter.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TextEditorDbContext, Migrations.Configuration>());
         }
 
         public DbSet<User> Users { get; set; }

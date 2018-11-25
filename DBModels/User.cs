@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
     [Serializable]
+    [DataContract(IsReference = true)]
     public class User
     {
         #region Const
@@ -15,11 +17,17 @@ namespace DBModels
 
         #region Fields
         [NonSerialized]
+        [DataMember]
         private Guid _guid;
+        [DataMember]
         private string _login;
+        [DataMember]
         private string _name;
+        [DataMember]
         private string _surname;
+        [DataMember]
         private string _password;
+        [DataMember]
         private string _email;
 
         #endregion

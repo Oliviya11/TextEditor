@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using DBModels;
+using System.Windows.Controls;
 using TextEditor.managers;
 using TextEditor.utils;
 using TextEditor.ViewModels;
