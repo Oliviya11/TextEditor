@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201811241817236_TextEditorDB-v1.Designer.cs">
       <DependentUpon>201811241817236_TextEditorDB-v1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811250931312_TextEditorDB-v2.cs" />
+    <Compile Include="Migrations\201811250931312_TextEditorDB-v2.Designer.cs">
+      <DependentUpon>201811250931312_TextEditorDB-v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextEditorDbContext.cs" />
@@ -89,6 +93,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811241817236_TextEditorDB-v1.resx">
       <DependentUpon>201811241817236_TextEditorDB-v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811250931312_TextEditorDB-v2.resx">
+      <DependentUpon>201811250931312_TextEditorDB-v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

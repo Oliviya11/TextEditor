@@ -19,8 +19,8 @@ namespace TextEditor.managers
             User user = SerializeManager.Instance.DeSerializeObject<User>(FilePathHolder.SaveUserFile);
             if (user != null && user.Login != null)
             {
-                
-                UserManager.Instance.CurrentUser = DbManager.Instance.GetUser(user.Login);
+                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                UserManager.Instance.CurrentUser = client.GetUser(user.Login);
                 NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
                 return true;
             }

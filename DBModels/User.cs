@@ -17,23 +17,18 @@ namespace DBModels
 
         #region Fields
         [NonSerialized]
-        [DataMember]
         private Guid _guid;
-        [DataMember]
         private string _login;
-        [DataMember]
         private string _name;
-        [DataMember]
         private string _surname;
-        [DataMember]
         private string _password;
-        [DataMember]
         private string _email;
 
         #endregion
 
         #region Properties
         [System.Xml.Serialization.XmlIgnore]
+        [DataMember]
         public Guid Id
         {
             get
@@ -46,45 +41,55 @@ namespace DBModels
             }
         }
 
+        [DataMember]
         public string Login
         {
             get
             {
                 return _login;
             }
-            set
+            private set
             {
                 _login = value;
             }
         }
 
         [System.Xml.Serialization.XmlIgnore]
+        [DataMember]
         public string Name
         {
             get
             {
                 return _name;
             }
-            private set { }
+            private set
+            {
+                _name = value;
+            }
         }
 
         [System.Xml.Serialization.XmlIgnore]
+        [DataMember]
         public string Surname
         {
             get
             {
                 return _surname;
             }
-            private set { }
+            private set
+            {
+                _surname = value;
+            }
         }
 
-        private string Password
+        [DataMember]
+        public string Password
         {
             get
             {
                 return _password;
             }
-            set
+            private set
             {
                 _password = value;
             }

@@ -92,7 +92,8 @@ namespace TextEditor.ViewModels
                 }
                 try
                 {
-                    currentUser = DbManager.Instance.GetUser(_login);
+                    ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                    currentUser = client.GetUser(_login);
                 }
                 catch (Exception ex)
                 {

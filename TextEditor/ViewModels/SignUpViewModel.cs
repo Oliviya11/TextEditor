@@ -106,7 +106,8 @@ namespace TextEditor.ViewModels
             {
                 try
                 {
-                    if (DbManager.Instance.DoesUserExist(_login))
+                    ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                    if (client.DoesUserExist(_login))
                     {
                         MessageBox.Show(String.Format(Resources.SignUp_UserAlreadyExists, _login));
                         return false;
@@ -121,7 +122,8 @@ namespace TextEditor.ViewModels
                 try
                 {
                     User user = new User(Login, Name, Surname, Password, Email);
-                    DbManager.Instance.CreateUser(user);
+                    ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                    client.CreateUser(user);
                     StorageManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
                 }
                 catch (Exception ex)

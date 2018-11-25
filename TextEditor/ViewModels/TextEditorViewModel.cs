@@ -130,7 +130,8 @@ namespace TextEditor.ViewModels
 
             try
             {
-                List<EditingInfo> editingInfos = DbManager.Instance.GetEditingInfoes(FileManager.Instance.CurrentFileName);
+                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                List<EditingInfo> editingInfos = new List<EditingInfo>(client.GetEditingInfoes(FileManager.Instance.CurrentFileName));
                 if (editingInfos != null)
                 {
                     string result = "";
@@ -166,7 +167,8 @@ namespace TextEditor.ViewModels
                 {
                     bool isSaved = FileManager.Instance.SaveFile(FileContent);
                     DateTime now = DateTime.Now;
-                    EditingInfo info = DbManager.Instance.CreateEditingInfo(UserManager.Instance.CurrentUser, FileManager.Instance.CurrentFileName, isSaved, now);
+                    ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                    EditingInfo info = client.CreateEditingInfo(UserManager.Instance.CurrentUser, FileManager.Instance.CurrentFileName, isSaved, now);
                     string result = info.User.Login + " " + info.EditingDate.ToString() + System.Environment.NewLine;
                     EditingInfo += result;
                     MessageBox.Show(Resources.SaveFile_Success);

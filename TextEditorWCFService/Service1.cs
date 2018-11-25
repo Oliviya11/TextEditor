@@ -33,11 +33,8 @@ namespace TextEditorWCFService
 
         public User GetUser(string login)
         {
-            using (var myChannelFactory = new ChannelFactory<IService1>("DBConnection"))
-            {
-                IService1 client = myChannelFactory.CreateChannel();
-                return client.GetUser(login);
-            }
+            User user = DbManager.Instance.GetUser(login);
+            return user;
         }
     }
 }

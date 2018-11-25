@@ -7,17 +7,14 @@ namespace DBModels
     public class EditingInfo
     {
         #region Fields
-        [DataMember]
         private Guid _guid;
-        [DataMember]
         private string _filePath;
-        [DataMember]
         private bool _isFileChanged;
-        [DataMember]
         private DateTime _editingDate;
         #endregion
 
         #region Properties
+        [DataMember]
         public Guid Id {
             get
             {
@@ -28,6 +25,8 @@ namespace DBModels
                 _guid = value;
             }
         }
+
+        [DataMember]
         public string FilePath {
             get
             {
@@ -38,17 +37,21 @@ namespace DBModels
                 _filePath = value;
             }
         }
-        private bool IsFileChanged
+
+        [DataMember]
+        public bool IsFileChanged
         {
             get
             {
                 return _isFileChanged;
             }
-            set
+            private set
             {
                 _isFileChanged = value;
             }
         }
+
+        [DataMember]
         public DateTime EditingDate
         {
             get
@@ -79,7 +82,9 @@ namespace DBModels
             return $"{FilePath} {EditingDate} {IsFileChanged}";
         }
 
+        [DataMember]
         public Guid UserId { get; set; }
+        [DataMember]
         public User User { get; set; }
     }
 }
