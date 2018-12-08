@@ -45,7 +45,7 @@ namespace TextEditor.ViewModels
         {
             var navigationModel = new NavigationModel(window);
             NavigationManager.Instance.Initialize(navigationModel);
-            if (!AutoLoginManager.Instance.readFromXMLAndRedirect())
+            if (!AutoLoginManager.Instance.isAutoLogin())
             {
                 navigationModel.Navigate(ModesEnum.LogIn);
             }

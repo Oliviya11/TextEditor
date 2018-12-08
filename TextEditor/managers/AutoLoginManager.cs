@@ -17,10 +17,18 @@ namespace TextEditor.managers
         public bool readFromXMLAndRedirect()
         {
             User user = SerializeManager.Instance.DeSerializeObject<User>(FilePathHolder.SaveUserFile);
+
             if (user != null && user.Login != null)
             {
                 ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
-                UserManager.Instance.CurrentUser = client.GetUser(user.Login);
+                User dbUser = client.GetUser(user.Login);
+
+                if (dbUser == null)
+                {
+                    return false;
+                }
+
+                UserManager.Instance.CurrentUser = dbUser;
                 NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
                 return true;
             }
