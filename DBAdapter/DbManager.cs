@@ -44,8 +44,12 @@ namespace TextEditor.managers
             EditingInfo info = null;
             using (TextEditorDbContext db = new TextEditorDbContext())
             {
-                User dbUser = db.Users.Include(u => u.EditingInfos).FirstOrDefault(u => u.Id == user.Id);
+                User dbUser = db.Users.FirstOrDefault(u => u.Id == user.Id);
                 info = new EditingInfo(filePath, isFileChanged, editingDate);
+                if (dbUser.EditingInfos == null)
+                {
+                    dbUser.EditingInfos = new List<EditingInfo>();
+                }
                 dbUser.EditingInfos.Add(info);
                 info.User = dbUser;
                 db.EditingInfos.Add(info);

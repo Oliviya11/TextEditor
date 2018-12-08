@@ -119,6 +119,26 @@ namespace TextEditor.ViewModels
                 VoidDelegate deg = delegate ()
                 {
                     initFileContent(FileManager.Instance.FileContent);
+
+                    try
+                    {
+                        ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                        List<EditingInfo> editingInfos = new List<EditingInfo>(client.GetEditingInfoes(FileManager.Instance.CurrentFileName));
+                        if (editingInfos != null)
+                        {
+                            string result = "";
+                            foreach (EditingInfo editingInfo in editingInfos)
+                            {
+                                result += editingInfo.User.Login + " " + editingInfo.EditingDate.ToString() + System.Environment.NewLine;
+                            }
+                            EditingInfo = result;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(String.Format(Resources.EditingInfo_FailedToRead, Environment.NewLine,
+                            ex.Message));
+                    }
                 };
                 FileManager.Instance.signalOnRead.AddListener(deg);
             }
@@ -126,27 +146,9 @@ namespace TextEditor.ViewModels
             {
                 MessageBox.Show(String.Format(Resources.OpenFile_FailedToRead, Environment.NewLine,
                     ex.Message));
+                MessageBox.Show(ex.Message);
             }
 
-            try
-            {
-                ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
-                List<EditingInfo> editingInfos = new List<EditingInfo>(client.GetEditingInfoes(FileManager.Instance.CurrentFileName));
-                if (editingInfos != null)
-                {
-                    string result = "";
-                    foreach (EditingInfo editingInfo in editingInfos)
-                    {
-                        result += editingInfo.User.Login + " " + editingInfo.EditingDate.ToString() + System.Environment.NewLine;
-                    }
-                    EditingInfo = result;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(String.Format(Resources.EditingInfo_FailedToRead, Environment.NewLine,
-                    ex.Message));
-            }
             LoaderManager.Instance.HideLoader();
         }
 
@@ -188,7 +190,15 @@ namespace TextEditor.ViewModels
         {
             StorageManager.Instance.ClearUserStorage();
             NavigationManager.Instance.Navigate(ModesEnum.LogIn);
+            EraseValues();
+            FileManager.Instance.ClearFileManager();
 
+        }
+
+        private void EraseValues()
+        {
+            FileContent = null;
+            EditingInfo = null;
         }
 
         #region EventsAndHandlers

@@ -31,6 +31,13 @@ namespace TextEditor.managers
             }
         }
 
+        public void ClearFileManager()
+        {
+            CurrentFileName = null;
+            FileContent = null;
+            signalOnRead = new Signal();
+        }
+
         public string FileContent
         {
             get

@@ -74,12 +74,6 @@ namespace TextEditor.ViewModels
         #endregion
         #endregion
 
-        #region ConstructorAndInit
-        internal LoginViewModel()
-        {
-
-        }
-        #endregion
 
         private async void SignInExecute(object obj)
         {
@@ -115,6 +109,7 @@ namespace TextEditor.ViewModels
             if (result)
             {
                 NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
+                EraseValues();
             }
         }
 
@@ -126,6 +121,13 @@ namespace TextEditor.ViewModels
         private void SignUpExecute(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.SignUp);
+            EraseValues();
+        }
+
+        private void EraseValues()
+        {
+            Login = null;
+            Password = null;
         }
 
         private void CloseExecute(object obj)

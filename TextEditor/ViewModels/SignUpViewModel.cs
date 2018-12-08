@@ -122,6 +122,7 @@ namespace TextEditor.ViewModels
                 try
                 {
                     User user = new User(Login, Name, Surname, Password, Email);
+                    UserManager.Instance.CurrentUser = user;
                     ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
                     client.CreateUser(user);
                     StorageManager.Instance.saveToXml(UserManager.Instance.CurrentUser);
@@ -141,6 +142,17 @@ namespace TextEditor.ViewModels
             {
                 NavigationManager.Instance.Navigate(ModesEnum.TextEditor);
             }
+
+            EraseValues();
+        }
+
+        private void EraseValues()
+        {
+            Login = null;
+            Name = null;
+            Surname = null;
+            Password = null;
+            Email = null;
         }
 
         private bool SignUpCanExecute(object obj)
