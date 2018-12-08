@@ -16,9 +16,13 @@
                 <ColumnDefinition Width="7*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="1" Height="45" Width="165"  VerticalAlignment="Top" Content="Editing history:" FontSize="24"></Label>
-            <Label Grid.Column="1" Margin ="20, 50, 20, 20" Height = "Auto" FontSize="14" Content="{Binding EditingInfo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Label>
-            <TextBox Grid.Row="1" TextWrapping="Wrap" Text="{Binding FileContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
+            <Label Grid.Column="1" Height="45" Width="165"  VerticalAlignment="Top" Content="Editing history:" FontSize="23"></Label>
+            <ScrollViewer Grid.Column="1">
+                <Label Grid.Column="1" Margin ="20, 50, 20, 20" Height = "Auto" FontSize="14" Content="{Binding EditingInfo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></Label>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1">
+                <TextBox TextWrapping="WrapWithOverflow" Text="{Binding FileContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></TextBox>
+            </ScrollViewer>    
         </Grid>
         <Menu>
             <MenuItem Header="File" Height="41" Width="60" FontSize="24">
