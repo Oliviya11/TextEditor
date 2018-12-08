@@ -123,15 +123,13 @@ namespace DBModels
 
         private void SetPassword(string password)
         {
-            _password = "";//Encrypting.EncryptText(password, PubblicKey);
+            _password = Encrypting.GetMd5HashForString(password);
         }
-        public bool CheckPassword(string password)
+        public bool CheckPassword(string userPassword)
         {
             try
             {
-                string res = "";//Encrypting.DecryptString(_password, PrivateKey);
-                string res2 = "";//Encrypting.GetMd5HashForString(password);
-                return res == res2;
+                return _password == Encrypting.GetMd5HashForString(userPassword);
             }
             catch (Exception)
             {

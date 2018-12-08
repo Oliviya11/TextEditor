@@ -100,6 +100,12 @@ namespace TextEditor.ViewModels
                     MessageBox.Show(String.Format(Resources.SignIn_UserDoesntExist, _login));
                     return false;
                 }
+
+                if (!currentUser.CheckPassword(Password))
+                {
+                    MessageBox.Show(String.Format(Resources.SignIn_WrongPassword, _password));
+                    return false;
+                }
                 UserManager.Instance.CurrentUser = currentUser;
                 StorageManager.Instance.saveToXml(currentUser);
                 return true;
